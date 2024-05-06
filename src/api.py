@@ -108,7 +108,7 @@ class CovidDataHandler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-type', 'text/html')
             self.end_headers()
-            with open('covid_data.html', 'rb') as f:
+            with open('static/covid_data.html', 'rb') as f:
                 self.wfile.write(f.read())
         else:
             self.send_response(404)
@@ -118,7 +118,6 @@ class CovidDataHandler(http.server.BaseHTTPRequestHandler):
 # Set up the HTTP server
 # added global constant variable in dotenv file with default value as 8001            
 PORT = int(os.getenv("PORT", 8001)) 
-
 # added try catch to handle exceptions
 try:
     with socketserver.TCPServer(("", PORT), CovidDataHandler) as httpd:
